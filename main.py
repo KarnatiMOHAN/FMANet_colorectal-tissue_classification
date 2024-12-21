@@ -203,6 +203,10 @@ def FMANet(input1, num_classes):
     x_l = share_2(x_l)
     x_g = share_2(x_g)
     x_c = share_2(x_c)
+
+    x_l = Dense(units=8, activation=softmax)(x_l)
+    x_g = Dense(units=8, activation=softmax)(x_g)
+    x_c = Dense(units=8, activation=softmax)(x_c)
     
     alpha_1 = Lambda(Cosin_similarity, output_shape= (None, 1))([x_l, x_c])
     alpha_2 = Lambda(Cosin_similarity, output_shape= (None, 1))([x_g, x_c])
